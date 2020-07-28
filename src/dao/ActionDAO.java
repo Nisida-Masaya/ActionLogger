@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Action;
-import model.User;
-import servlet.AddAction;
 
 public class ActionDAO {
 	// データベース接続に使用する情報

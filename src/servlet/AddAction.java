@@ -89,7 +89,7 @@ public class AddAction extends HttpServlet {
 			session.setAttribute("actionToAdd", action);
 
 			// 確認画面にリダイレクト
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/addActionForm.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/addActionConfirm.jsp");
 			dispatcher.forward(req, resp);
 			
 		} catch (UnsupportedEncodingException e) {

@@ -26,7 +26,7 @@
 		<div class="col"></div>
 		<div class="col-8">
 			<form class="form-adduser"
-				action="/ActionLogger/adduserconfirm" method="post">
+				action="/ActionLogger/addactionconfirm" method="post">
 
 				<h4 h3 mb-3 font-weight-normal>活動記録</h4>
 				<div class="mb-3">日付 : ${actionToAdd.day}</div>
