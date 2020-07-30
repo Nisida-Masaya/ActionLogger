@@ -48,7 +48,7 @@
 			<form class="form-signin" action="/ActionLogger/logincheck"
 				method="post">
 				<h4 h3 mb-3 font-weight-normal>AcctionLoggerログイン</h4>
-				<div class="form-group">
+				<div class="form-group"> 
 
 					ユーザー名<br><c:out ><input type="text" class="form-control"
 						name="userid" placeholder="username" required autofocus></c:out>

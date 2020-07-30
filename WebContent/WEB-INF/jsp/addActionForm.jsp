@@ -28,7 +28,8 @@
 		font-size: 3.5rem;
 	}
 }
-#enter-Room{
+
+#enter-Room {
 	text-align: center;
 }
 </style>
@@ -40,41 +41,43 @@
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
-			<form class="form-adduser" action="/ActionLogger/actionrecord"
+			<form class="form-adduser" action="/ActionLogger/addaction"
 				method="post">
 				<h4 h3 mb-3 font-weight-normal>活動登録</h4>
 				<div class="mb-3">
 					<label for="day">日付</label> <input type="date" class="form-control"
-						id="date" name="date" placeholder="日付" 　required>
+						id="day" name="day" placeholder="日付" required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
 					<label for="starttime">開始時間</label> <input type="time"
-						class="form-control" id="starttime" name="starttime" 
+						class="form-control" id="starttime" name="starttime"
 						placeholder="開始時間" 　required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
 					<label for="finishtime">終了時間</label> <input type="time"
-						class="form-control" id="finishtime" name="finishtime" 
-						placeholder="終了時間" 　required>
+						class="form-control" id="finishtime" name="finishtime"
+						placeholder="終了時間" required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
 					<label for="place">場所</label> <input type="text"
-						class="form-control" id="place" name="place" placeholder="場所">
+						class="form-control" id="place" name="place" placeholder="場所"
+						required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">
 					<label for="reason">理由</label> <input type="textarea"
-						class="form-control" id="reason" name="reason">
+						class="form-control" id="reason" name="reason" required>
 				</div>
 				<div class="mb-3">
 					<label for="remark">備考</label> <input type="textarea"
-						class="form-control" id="remark" name="remark">
+						class="form-control" id="remark" name="remark" >
 				</div>
 				<input type="submit" class="btn btn-secondary btn-block btn-lg"
 					id="enterRoom" value="登録"></input>
+			</form>
 		</div>
 		<div class="col"></div>
 

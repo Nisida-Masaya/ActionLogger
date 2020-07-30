@@ -24,7 +24,6 @@ import model.ErrorViewData;
 import model.InputCheckException;
 import model.User;
 import model.ValidationKey;
-
 @WebServlet("/addaction")
 public class AddAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -63,29 +62,29 @@ public class AddAction extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		// フォームから送られた確認キーが保存したものと一致するか確認
-		ValidationKey validationKey = (ValidationKey) session.getAttribute("validationKey");
-		if (!req.getParameter("vKey").equals(validationKey.getValue())) {
-			// 一致しなかったので、セッションスコープに保存したキーを破棄し、エラーページに
-			session.removeAttribute("validationKey");
-			// 表示データを用意する
-			ErrorViewData errorData = new ErrorViewData("問題が発生しました。", "トップに戻る", "/ActionLogger/");
-			req.setAttribute("errorData", errorData);
-			// エラー表示にフォワード
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");
-			dispatcher.forward(req, resp);
-			return;
-		}
+//		ValidationKey validationKey = (ValidationKey) session.getAttribute("validationKey");
+//		if (!req.getParameter("vKey").equals(validationKey.getValue())) {
+//			// 一致しなかったので、セッションスコープに保存したキーを破棄し、エラーページに
+//			session.removeAttribute("validationKey");
+//			// 表示データを用意する
+//			ErrorViewData errorData = new ErrorViewData("問題が発生しました。", "トップに戻る", "/ActionLogger/");
+//			req.setAttribute("errorData", errorData);
+//			// エラー表示にフォワード
+//			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");
+//			dispatcher.forward(req, resp);
+//			return;
+//		}
 
 		Action action = new Action();
 		try {
-			action.setDay(checkLongInput(req.getParameter("day")));
-			action.setStarttime(checkLongInput(req.getParameter("starttime")));
-			action.setFinishtime(checkLongInput(req.getParameter("finishtime")));
-			action.setPlace(checkPhoneNumber(req.getParameter("place")));
-			action.setReason(checkMailAddress(req.getParameter("reason")));
-			action.setRemark(checkMailAddress(req.getParameter("remark")));
+			action.setDay(req.getParameter("day"));
+			action.setStarttime(req.getParameter("starttime"));
+			action.setFinishtime(req.getParameter("finishtime"));
+			action.setPlace(req.getParameter("place"));
+			action.setReason(req.getParameter("reason"));
+			action.setRemark(req.getParameter("remark"));
 
-			// userオブジェクトをセッションスコープに一旦保存（DBに入れるのはConfirmの後）
+			// actionオブジェクトをセッションスコープに一旦保存（DBに入れるのはConfirmの後）
 			session.setAttribute("actionToAdd", action);
 
 			// 確認画面にリダイレクト
@@ -94,14 +93,15 @@ public class AddAction extends HttpServlet {
 			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		} catch (InputCheckException e1) {
-			// 表示データを用意する
-			ErrorViewData errorData = new ErrorViewData("フォームに入力された内容に問題がありました。", "入力画面に戻る",
-					"/ActionLogger/addActionForm.jsp");
-			req.setAttribute("errorData", errorData);
-			// エラー表示にフォワード
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");
-			dispatcher.forward(req, resp);
 		}
+//		} catch (InputCheckException e1) {
+			// 表示データを用意する
+//			ErrorViewData errorData = new ErrorViewData("フォームに入力された内容に問題がありました。", "入力画面に戻る",
+//					"/ActionLogger/addActionForm.jsp");
+//			req.setAttribute("errorData", errorData);
+			// エラー表示にフォワード
+//			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");
+//			dispatcher.forward(req, resp);
+//		}
 	}
 }

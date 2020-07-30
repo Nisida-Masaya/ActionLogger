@@ -8,6 +8,7 @@ public class Action {
 	private String place;
 	private String reason;
 	private String remark;
+	private String userId;
 
 	public Action() {
 
@@ -68,6 +69,14 @@ public class Action {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getUserId() {
+		return getUserId();
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 }
