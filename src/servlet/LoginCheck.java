@@ -1,5 +1,6 @@
 package servlet;
 
+import java.awt.Desktop.Action;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ActionDAO;
 import dao.UserDAO;
 import model.User;
 
@@ -49,12 +51,17 @@ public class LoginCheck extends HttpServlet {
 		// DBからユーザーを取得
 		UserDAO userDAO = new UserDAO();
 		User user = userDAO.get(req.getParameter("userid"));
-
+				
+		
 		// DBからの取得が成功 AND パスワードハッシュが合致
 		if (user != null && user.getPwdHash().equals(passwordHash)) {
 			HttpSession session = req.getSession();
 			session.setAttribute("userid", user.getUserId());
 			session.setAttribute("name", user.getName());
+			session.setAttribute("pwdhash", user.getPwdHash());
+			session.setAttribute("address", user.getAddress());
+			session.setAttribute("tel", user.getTel());
+			session.setAttribute("email", user.getEmail());
 			resp.sendRedirect("/ActionLogger/");
 
 		} else {

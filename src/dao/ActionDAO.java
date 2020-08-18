@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Action;
 import model.User;
@@ -14,40 +16,7 @@ public class ActionDAO {
 		private final static String  JDBC_URL = "jdbc:h2:tcp://localhost/~/h2db/ActionLogger";
 		private final static String  DB_USER = "sa";
 		private final static String  DB_PASS = "";
-		
-		public Action get(String actionId, String userid) {
-			Action action = null;
-
-			// データベース接続
-			try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-
-				// SELECT文の準備
-				String sql = "SELECT * FROM ACTION WHERE actionid = ?";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
-				pStmt.setString(1, actionId);
-
-				// SELECTを実行
-				ResultSet rs = pStmt.executeQuery();
-
-				// SELECT文の結果をactionに格納
-				while (rs.next()) {
-					action = new Action();
-//					action.setActionId(rs.getString("ActionId"));
-					action.setActionId(rs.getString("Day"));
-					action.setStarttime(rs.getString("Starttime"));
-					action.setFinishtime(rs.getString("Finishtime"));
-					action.setPlace(rs.getString("Place"));
-					action.setReason(rs.getString("Reason"));
-					action.setRemark(rs.getString("Remark"));
-					action.setUserId(rs.getString("Userid"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
-			return action;
-		}
-		
+				
 		public static  boolean save(Action action, String userid) {
 			// データベース接続
 			try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
@@ -77,5 +46,40 @@ public class ActionDAO {
 			}
 			return true;
 		}
+		
+		public List<Action> findAll(String userid){
+			List<Action> actionList = new ArrayList();
+			
+			//データベース接続
+			try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
+				//SELECTの準備
+				String sql = "SELECT * FROM ACTION"
+						+ " WHERE USERID=?"
+						+ " ORDER BY DAY DESC";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, userid);
+				//結果取得
+				ResultSet rs = pStmt.executeQuery();
+				
+				//レコード内容
+				//ACTIONHISTORYインスタンスに設定、ArrayListに追加
+				while(rs.next()) {
+					Action action = new Action();
+					action.setDay(rs.getString("Day"));
+					action.setStarttime(rs.getString("Starttime"));
+					action.setFinishtime(rs.getString("Finishtime"));
+					action.setPlace(rs.getString("Place"));
+					action.setReason(rs.getString("Reason"));
+					action.setRemark(rs.getString("Remark"));
+					action.setUserId(rs.getString("Userid"));
+					actionList.add(action);
+				}
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+				return null;
+			}
+			return actionList;
+		}		
 }
 

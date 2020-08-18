@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.User;
+import servlet.ProfileChange;
 
 //DB上のuserテーブルに対応するDAO
 public class UserDAO {
@@ -77,4 +78,51 @@ public class UserDAO {
 		}
 		return true;
 	}
+
+	public boolean overwrite(User user) {
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// INSERT文の準備(idは自動連番なので指定しなくてよい）
+			String sql = "update USER set NAME=?, ADDRESS=?, TEL=?, EMAIL=? " + "WHERE USERID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, user.getName());
+			pStmt.setString(2, user.getAddress());
+			pStmt.setString(3, user.getTel());
+			pStmt.setString(4, user.getEmail());
+			pStmt.setString(5, user.getUserId());
+			
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+	
+	public boolean changepassword(User user) {
+		// データベース接続
+				try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+					// INSERT文の準備(idは自動連番なので指定しなくてよい）
+					String sql = "update USER set PWDHASH = ? " + "WHERE USERID = ?";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					pStmt.setString(1, user.getPwdHash());
+					pStmt.setString(2, user.getUserId());
+					
+					int result = pStmt.executeUpdate();
+					if (result != 1) {
+						return false;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					return false;
+				}
+				return true;
+	}
+
 }

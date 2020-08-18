@@ -68,15 +68,27 @@
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 				<!-- コンテンツエリアの中身をインポート -->
 				<%
-					if (view != null && view.equals("activities")) {
+					if(view != null && view.equals("activities")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/activities.jsp" />
 				<%
-					} else if (view != null && view.equals("addActionForm"))  {
+					} else if(view != null && view.equals("addActionForm")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/addActionForm.jsp" />
 				<%
-					}else  {
+					} else if(view != null && view.equals("profileCheck")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/profileCheck.jsp" />
+				<%
+					}else if(view != null && view.equals("profileChange")){
+				%>
+				<jsp:include page="/WEB-INF/jsp/profileChangeForm.jsp" />
+				<%	
+					}else if(view != null && view.equals("changePasswordConfirm")){
+				%>
+				<jsp:include page="/WEB-INF/jsp/changePasswordConfirm.jsp" />
+				<%	
+					}else {
 				%>
 				<jsp:include page="/WEB-INF/jsp/dashboard.jsp" />
 				<%

@@ -1,6 +1,8 @@
 package model;
 
-public class Action {
+import java.io.Serializable;
+
+public class Action implements Serializable{
 	private String actionId;
 	private String day;
 	private String starttime;
@@ -11,7 +13,7 @@ public class Action {
 	private String userId;
 
 	public Action() {
-
+		super();
 	}
 
 	// setter and getter

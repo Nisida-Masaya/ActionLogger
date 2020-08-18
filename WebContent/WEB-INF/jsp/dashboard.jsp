@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <div
@@ -12,11 +14,11 @@
 		<tbody>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">ユーザー名</tk>
-				<td>${userid}</td>
+				<td><c:out value="${userid}"/></td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">氏名</th>
-				<td>${name}</td>
+				<td><c:out value="${name}"/></td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">参加グループ</th>
@@ -50,41 +52,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>2020/06/16</td>
-				<td>9:00 - 13:00</td>
-				<td>KBC</td>
-				<td>授業</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
-			<tr>
-				<td>0000/00/00</td>
-				<td>00:00 - 00:00</td>
-				<td>□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-				<td>□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□</td>
-			</tr>
+			<c:forEach var="action" items="${actionhistory}">
+				<tr>
+					<td><c:out value="${action.day}"/></td>
+					<td><c:out value="${action.starttime}"/>-<c:out value="${action.finishtime}"/></td>
+					<td><c:out value="${action.place}"/></td>
+					<td><c:out value="${action.reason}"/></td>
+					<td><c:out value="${action.remark}"/></td>
+					
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>

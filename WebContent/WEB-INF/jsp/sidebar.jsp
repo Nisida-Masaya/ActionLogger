@@ -42,9 +42,9 @@
 		</a>
 	</h6>
 	<ul class="nav flex-column mb-2">
-		<li class="nav-item"><a class="nav-link" href="#"> KBC ITE19
+		<li class="nav-item"><a class="nav-link" href="#"> 
 		</a></li>
-		<li class="nav-item"><a class="nav-link" href="#"> KBC 教職員 </a></li>
+		<li class="nav-item"><a class="nav-link" href="#"> </a></li>
 	</ul>
 
 	<h6
@@ -55,9 +55,11 @@
 		</a>
 	</h6>
 	<ul class="nav flex-column mb-2">
-		<li class="nav-item"><a class="nav-link" href="/WEB-INF/jsp/profileCheck.jsp"> プロフィール確認 </a>
+		<li class="nav-item"><a class="nav-link" href="/ActionLogger/?view=profileCheck"> プロフィール確認 </a>
 		</li>
-		<li class="nav-item"><a class="nav-link" href="/WEB-INF/jsp/profileChange.jsp"> プロフィール変更 </a>
+		<li class="nav-item"><a class="nav-link" href="/ActionLogger/?view=profileChange"> プロフィール変更 </a>
+		</li>
+		<li class="nav-item"><a class="nav-link" href="/ActionLogger/?view=changePasswordConfirm"> パスワード変更 </a>
 		</li>
 	</ul>
 

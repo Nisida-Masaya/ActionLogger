@@ -1,6 +1,9 @@
 package servlet;
 
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.ActionDAO;
+import model.Action;
 
 /**
  * Servlet implementation class MainPage
@@ -35,6 +41,11 @@ public class MainPage extends HttpServlet {
 		HttpSession session = request.getSession();
 		// useridデータをsessionスコープで保存
 		String userid = (String) session.getAttribute("userid");
+		
+		ActionDAO actionDAO = new ActionDAO();
+		List<Action> actionhistory = new ArrayList<>();
+		actionhistory = actionDAO.findAll(userid);
+		session.setAttribute("actionhistory", actionhistory);
 
 		if (userid == null) {
 			// MainViewを表示
@@ -45,6 +56,7 @@ public class MainPage extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainView.jsp");
 			dispatcher.forward(request, response);
 		}
+		
 	}
 
 	/**

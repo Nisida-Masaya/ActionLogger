@@ -43,7 +43,6 @@
 			</form>
 		</div>
 		<div class="col"></div>
-
 	</div>
 </body>
 </html>
