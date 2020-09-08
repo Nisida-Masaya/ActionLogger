@@ -68,27 +68,39 @@
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 				<!-- コンテンツエリアの中身をインポート -->
 				<%
-					if(view != null && view.equals("activities")) {
+					if (view != null && view.equals("activities")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/activities.jsp" />
 				<%
-					} else if(view != null && view.equals("addActionForm")) {
+					} else if (view != null && view.equals("addActionForm")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/addActionForm.jsp" />
 				<%
-					} else if(view != null && view.equals("profileCheck")) {
+					} else if (view != null && view.equals("profileCheck")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/profileCheck.jsp" />
 				<%
-					}else if(view != null && view.equals("profileChange")){
+					} else if (view != null && view.equals("profileChange")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/profileChangeForm.jsp" />
-				<%	
-					}else if(view != null && view.equals("changePasswordConfirm")){
+				<%
+					} else if (view != null && view.equals("changePasswordConfirm")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/changePasswordConfirm.jsp" />
-				<%	
-					}else {
+				<%
+					} else if (view != null && view.equals("creategroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/createGroup.jsp" />
+				<%
+					} else if (view != null && view.equals("participategroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/participateGroup.jsp" />
+				<%
+					} else if (view != null && view.equals("groupmember")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/groupMember.jsp" />
+				<%
+					} else {
 				%>
 				<jsp:include page="/WEB-INF/jsp/dashboard.jsp" />
 				<%

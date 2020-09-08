@@ -52,7 +52,7 @@
 				<div class="mb-3">
 					<label for="starttime">開始時間</label> <input type="time"
 						class="form-control" id="starttime" name="starttime"
-						placeholder="開始時間" 　required>
+						placeholder="開始時間" required>
 					<div class="invalid-feedback">必須</div>
 				</div>
 				<div class="mb-3">

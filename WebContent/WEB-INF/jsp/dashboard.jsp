@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -14,15 +14,17 @@
 		<tbody>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">ユーザー名</tk>
-				<td><c:out value="${userid}"/></td>
+				<td><c:out value="${userid}" /></td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">氏名</th>
-				<td><c:out value="${name}"/></td>
+				<td><c:out value="${name}" /></td>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">参加グループ</th>
-				<td></td>
+				<c:forEach var="group2" items="${group2}">
+					<td><c:out value="${group2.groupname}" /></td>
+				</c:forEach>
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right"></th>
@@ -30,11 +32,9 @@
 			</tr>
 			<tr class="d-flex">
 				<th scope="row" class="col-2 text-right">管理グループ</th>
-				<td></td>
-			</tr>
-			<tr class="d-flex">
-				<th scope="row" class="col-2 text-right"></th>
-				<td></td>
+				<c:forEach var="group" items="${group}">
+					<td><c:out value="${group.groupname}" /></td>
+				</c:forEach>
 			</tr>
 		</tbody>
 	</table>
@@ -54,12 +54,13 @@
 		<tbody>
 			<c:forEach var="action" items="${actionhistory}">
 				<tr>
-					<td><c:out value="${action.day}"/></td>
-					<td><c:out value="${action.starttime}"/>-<c:out value="${action.finishtime}"/></td>
-					<td><c:out value="${action.place}"/></td>
-					<td><c:out value="${action.reason}"/></td>
-					<td><c:out value="${action.remark}"/></td>
-					
+					<td><c:out value="${action.day}" /></td>
+					<td><c:out value="${action.starttime}" />-<c:out
+							value="${action.finishtime}" /></td>
+					<td><c:out value="${action.place}" /></td>
+					<td><c:out value="${action.reason}" /></td>
+					<td><c:out value="${action.remark}" /></td>
+
 				</tr>
 			</c:forEach>
 		</tbody>

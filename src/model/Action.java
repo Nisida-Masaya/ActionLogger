@@ -11,6 +11,8 @@ public class Action implements Serializable{
 	private String reason;
 	private String remark;
 	private String userId;
+	private String name;
+
 
 	public Action() {
 		super();
@@ -74,11 +76,21 @@ public class Action implements Serializable{
 	}
 
 	public String getUserId() {
-		return getUserId();
+		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+		
 
 }
